@@ -9,7 +9,7 @@
 A curated collection of research and tools for AI systems that learn from experience, improve their own systems, and update their models.
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Updated](https://img.shields.io/badge/Updated-2026--09--07-2563eb?style=flat-square)
+![Updated](https://img.shields.io/badge/Updated-2026--09--11-2563eb?style=flat-square)
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-16a34a?style=flat-square)](#contributing)
 
 [📄 Papers](#papers) · [🛠️ Projects](#projects) · [📊 Benchmarks, Evaluation & Datasets](#benchmarks)
@@ -147,29 +147,60 @@ Selected implementations and frameworks for building self-improving agents and a
 
 ## 📊 Benchmarks, Evaluation & Datasets
 
-### 🎯 Self-Improvement Benchmarks
+Benchmarks are grouped by their primary evaluation target:
+
+| Category | Core question | What is evaluated |
+|---|---|---|
+| **AI System Improvement** | Can autonomous research build a stronger AI system? | Changes to training data, algorithms, model weights, prompts, memory, skills, tools, or harnesses; measured by capability gains, efficiency, transfer, and retention. |
+| **Downstream Task Capability** | Can an AI system solve difficult tasks, including after self-improvement? | Scientific, engineering, and professional task outputs; measured by correctness, quality, efficiency, and gains from accumulated experience. |
+
+Both provide evidence relevant to RSI. Establishing **recursive** improvement also requires showing that successive systems inherit improvements and become better at producing further improvements on new problems.
+
+### 🎯 1. AI System Improvement
 
 | Date | Resource | Evaluation focus | Links |
 |---|---|---|---|
-| 2026-08-26, project | **RSI-Exam** | Improving weak working research methods, followed by independent sealed replay; 35 public and 53 private tasks. | [Website](https://rsi-exam.ai/) · [Code](https://github.com/aiming-lab/RSI-Exam) · [Data](https://huggingface.co/datasets/RSI-Exam/RSI-Exam) |
 | 2026-08-20 | **AI4AI-Bench** | Training-algorithm redesign across ten research repositories with four-hour exploration and sealed reruns. | [Paper](https://arxiv.org/abs/2608.20318) · [Code](https://github.com/Einsia/AI4AI-Bench) |
-| 2026-08-07, announcement | **RSI Bench** | Compute-bounded AI R&D tasks, including self-distillation, data curation, and agent-swarm optimization. | [Website](https://www.rsi-benchmark.com/blog/announcing-rsi-bench) · [Code](https://github.com/scaleapi/rsi-benchmark) |
+| 2026-08, report | **CurateBench** | Data selection, synthesis, and mixing under a fixed training recipe; tests whether one trained model improves across math, coding, and tool use. | [Report](https://www.datologyai.com/blog/datasmith) |
+| 2026-08-04 | **ContinualSkillBench** | Construction, maintenance, and reuse of skill libraries across 500 sequential subtasks in five domains; examines skill retention and transfer. | [Paper](https://arxiv.org/abs/2608.03874) · [Code & tasks](https://github.com/gtynnn060110-hash/continual-skill-bench-final) |
 | 2026-08-04 | **PAST-Bench** | Matched task sequences with and without retained experience, including experience-management pathways. | [Paper](https://arxiv.org/abs/2608.04003) · [Code](https://github.com/Gen-Verse/PAST-Bench) |
-| 2026-07-28 | **RSIBench-Data** | Data-centric research on a fixed target-model setup, with iterative model training and checkpoint feedback. | [Paper](https://arxiv.org/abs/2607.25886) · [Code](https://github.com/evolvent-ai/RSIBench-Data) |
+| 2026-07-29, framework | **RSI Bench (Evolvent AI)** | Modular evaluation that varies one improvement component while fixing the surrounding services and budget; its public task track is RSIBench-Data below. | [Website](https://rsibench.co/) · [Release](https://evolvent.co/en/blog/RSIBench-Data) |
+| 2026-07-28 | **RSIBench-Data** | Iterative training-data research for a fixed target model, using training and evaluation feedback to select a stronger checkpoint across six target evaluations. | [Paper](https://arxiv.org/abs/2607.25886) · [Code](https://github.com/evolvent-ai/RSIBench-Data) · [Track](https://rsibench.co/data/) |
 | 2026-06-16 | **SEAGym** | Harness evolution with frozen update-validation, held-out ID/OOD tests, replay diagnostics, and saved snapshots. | [Paper](https://arxiv.org/abs/2606.17546) · [Code](https://github.com/antropy-research/SEAGym) |
-| 2026-06-04, paper | **Continual Learning Bench** | Stateful learning of reusable structure across task sequences in six domains. | [Paper](https://arxiv.org/abs/2606.05661) · [Code](https://github.com/pgasawa/continual-learning-bench) |
+| 2026-04-12 | **Agent² RL-Bench** | Autonomous agentic RL engineering, including trajectory collection, model training, and artifact evaluation. | [Paper](https://arxiv.org/abs/2604.10547) · [Code](https://github.com/microsoft/RD-Agent/blob/main/rdagent/scenarios/rl/autorl_bench/README.md) |
+| 2026-03-09 | **PostTrainBench** | End-to-end LLM post-training: agents choose data and training methods within a fixed GPU/time budget, then submit model checkpoints for evaluation. | [Paper](https://arxiv.org/abs/2603.08640) · [Code](https://github.com/aisa-group/PostTrainBench) · [Leaderboard](https://posttrainbench.com/) |
+| 2026-03-02 | **FT-Dojo** | Autonomous finetuning across 13 tasks and five domains with sandboxed execution and held-out evaluation. | [Paper](https://arxiv.org/abs/2603.01712) · [Code](https://github.com/microsoft/RD-Agent) |
 
-### 🔬 AI Research and Training Evaluation
+### 🔬 2. Downstream Task Capability
 
 | Date | Resource | Evaluation focus | Links |
 |---|---|---|---|
-| 2026-08-28 | **TASTE** | Research judgment: agreement with experienced researchers on 92 pairs of AI-safety research proposals. | [Research article](https://alignment.anthropic.com/2026/taste/) |
+| 2026-09-01, project | **PPTBench (Einsia)** | Reconstructing 500 scientific diagrams as editable PowerPoint slides; evaluates semantic fidelity, native editability, and visual structure. | [Website & tasks](https://lab.einsia.ai/pptbench/) |
+| 2026-08-26, project | **RSI-Exam** | Improving methods from weak baselines across 88 tasks in six domains, then testing on hidden data; includes AI memory/harness tasks alongside scientific and professional tasks. | [Website](https://rsi-exam.ai/) · [Code](https://github.com/aiming-lab/RSI-Exam) · [Data](https://huggingface.co/datasets/RSI-Exam/RSI-Exam) |
 | 2026-08-18, paper | **ASI-Bench** | Project-level scientific research across 60 tasks and 11 domains, with progressively reduced methodological guidance. | [Paper](https://arxiv.org/abs/2608.17271) · [Code](https://github.com/apexin-ai/ASI-Bench) · [Leaderboard](https://asibench.apexin.ai/) |
-| 2026-04-12 | **Agent² RL-Bench** | Autonomous agentic RL engineering, including trajectory collection, model training, and artifact evaluation. | [Paper](https://arxiv.org/abs/2604.10547) · [Code](https://github.com/microsoft/RD-Agent/blob/main/rdagent/scenarios/rl/autorl_bench/README.md) |
-| 2026-03-02 | **FT-Dojo** | Autonomous finetuning across 13 tasks and five domains with sandboxed execution and held-out evaluation. | [Paper](https://arxiv.org/abs/2603.01712) · [Code](https://github.com/microsoft/RD-Agent) |
-| 2025-04-02 | **PaperBench** | From-scratch replication of 20 ICML 2024 papers, scored using hierarchical author-developed rubrics. | [Paper](https://arxiv.org/abs/2504.01848) · [Code](https://github.com/openai/preparedness/tree/main/project/paperbench) |
-| 2024-11-22 | **RE-Bench** | ML research-engineering environments with human-expert baselines, resource budgets, and trajectories. | [Paper](https://arxiv.org/abs/2411.15114) · [Code](https://github.com/METR/RE-Bench) |
-| 2024-10-09 | **MLE-bench** | End-to-end ML engineering across 75 Kaggle competitions. | [Paper](https://arxiv.org/abs/2410.07095) · [Code](https://github.com/openai/mle-bench) |
+| 2026-08-05, preview | **EmulatorBench** | Building 16 game-system emulators from scratch in Rust, checked against hardware specifications and diagnostic programs. | [Report](https://www.primeintellect.ai/blog/prime-agent) · [Agent code](https://github.com/PrimeIntellect-ai/prime-agent) |
+| 2026-07-30, OpenMLE paper | **NatureBench Lite** | Ten scientific ML tasks from NatureBench, comparing generated solutions with published Nature-family results to assess transfer to scientific problems. | [Paper](https://arxiv.org/abs/2607.28568) · [Task subset](https://github.com/FrontisAI/OpenRSI/tree/main/OpenMLE-Evo/benchmarks/naturebench_lite_v2) · [Data](https://huggingface.co/datasets/FrontisAI/NatureBench) |
+| 2026-07-30, paper | **OpenMLE-Gym** | Executable ML engineering tasks with training, debugging, and prediction feedback; supplies task environments for program evolution and research-agent evaluation. | [Paper](https://arxiv.org/abs/2607.28568) · [Code](https://github.com/FrontisAI/OpenRSI/tree/main/OpenMLE-Gym) · [Tasks](https://huggingface.co/datasets/FrontisAI/OpenMLE-Tasks) |
+| 2026-05-04, release | **Continual Learning Bench (CL-Bench)** | Sequential tasks in six domains with shared latent rules and concept drift; compares stateful and stateless runs to measure gains from experience. | [Paper](https://arxiv.org/abs/2606.05661) · [Code](https://github.com/pgasawa/continual-learning-bench) · [Release](https://continual-learning-bench.com/news/cl-bench-1-0/) |
+| 2026-04-14 | **Frontier-Eng** | Iterative optimization of feasible engineering designs using simulator feedback; 47 tasks covering areas such as energy, computing systems, and control. | [Paper](https://arxiv.org/abs/2604.12290) · [Code & tasks](https://github.com/Einsia/Frontier-Engineering) |
+| 2026-01-20 | **APEX-Agents** | Long-horizon work across files and applications: 480 investment-banking, consulting, and legal tasks scored against expert rubrics. | [Paper](https://arxiv.org/abs/2601.14242) · [Evaluation framework](https://github.com/Mercor-Intelligence/archipelago) · [Data](https://huggingface.co/datasets/mercor/apex-agents) |
+
+<details>
+<summary>🧪 Additional research-engineering and downstream task suites</summary>
+
+These provide task-level evaluation inside or after an improvement loop.
+
+| Suite | Typical use |
+|---|---|
+| [PaperBench](https://arxiv.org/abs/2504.01848) · [Code](https://github.com/openai/preparedness/tree/main/project/paperbench) | Replication of research papers, scored using author-developed rubrics. |
+| [RE-Bench](https://arxiv.org/abs/2411.15114) · [Code](https://github.com/METR/RE-Bench) | ML research-engineering tasks with human-expert baselines and resource budgets. |
+| [MLE-bench](https://arxiv.org/abs/2410.07095) · [Code](https://github.com/openai/mle-bench) | End-to-end ML engineering on Kaggle competitions. |
+| [SWE-bench / Verified](https://www.swebench.com/SWE-bench/) | Repository repair and coding-agent evaluation. |
+| [Terminal-Bench](https://www.tbench.ai/) | Executable terminal tasks with containerized environments and verifiers. |
+| [SOL-ExecBench](https://github.com/NVIDIA/SOL-ExecBench) | GPU-kernel optimization with numerical checks and controlled timing. |
+| [WebArena](https://github.com/web-arena-x/webarena) / [VisualWebArena](https://github.com/web-arena-x/visualwebarena) | Browser-agent evaluation, memory reuse, and cross-episode learning. |
+
+</details>
 
 ### 🔍 Evaluation Studies
 
@@ -177,20 +208,6 @@ Selected implementations and frameworks for building self-improving agents and a
 |---|---|---|
 | 2026-08-20 | [Phantom Gains: Auditing Self-Improvement Against a Measured Null](https://arxiv.org/abs/2608.20290) | Use frozen controls and repeated measurements to separate learning from apparent gains. [Code](https://github.com/chengxuphd/phantom-gains). |
 | 2026-08-18 | [On the Fragility of Self-Improving Agents: Variance, Task Order, and Underspecification](https://arxiv.org/abs/2608.18066) | Check multiple seeds, task orders, and feedback specifications when evaluating memory-based agents. [Code](https://github.com/SalesforceAIResearch/self-improve-fragility) · [Trajectories](https://huggingface.co/datasets/Salesforce/self-improve-fragility). |
-
-<details>
-<summary>🧪 Common downstream task suites</summary>
-
-These measure task performance and are often used inside or after an improvement loop.
-
-| Suite | Typical use |
-|---|---|
-| [SWE-bench / Verified](https://www.swebench.com/SWE-bench/) | Repository repair and coding-agent evaluation. |
-| [Terminal-Bench](https://www.tbench.ai/) | Executable terminal tasks with containerized environments and verifiers. |
-| [SOL-ExecBench](https://github.com/NVIDIA/SOL-ExecBench) | GPU-kernel optimization with numerical checks and controlled timing. |
-| [WebArena](https://github.com/web-arena-x/webarena) / [VisualWebArena](https://github.com/web-arena-x/visualwebarena) | Browser-agent evaluation, memory reuse, and cross-episode learning. |
-
-</details>
 
 ### 🗂️ Datasets and Environments
 
